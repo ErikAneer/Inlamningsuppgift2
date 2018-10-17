@@ -19,7 +19,5 @@ abstract class Person {
           
           public String getprsonalIdentityNumber(){
                     return personalIdentityNumber;
-          }
-          
-                  
+          }               
 }

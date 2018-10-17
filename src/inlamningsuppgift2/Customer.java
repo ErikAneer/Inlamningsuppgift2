@@ -3,10 +3,11 @@ package inlamningsuppgift2;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-import java.util.*;
 import javax.swing.JOptionPane;
 
 public class Customer extends Person implements ICustomerInterface {
+         
+         UtilMethods u = new UtilMethods();
          
          protected String lastMemberShipDate;
           
@@ -15,47 +16,48 @@ public class Customer extends Person implements ICustomerInterface {
          public Customer(String name, String personalSecurityNumber, String lastMemberShipDate) {
                    super(name, personalSecurityNumber);
                    this.lastMemberShipDate = lastMemberShipDate;
-          }
+         }
          
-          public String getLastMemberShipDate(){
+         public String getLastMemberShipDate(){
                    return lastMemberShipDate;
           }
-          @Override
-          public String getDateofMembershipExpiration(){
+          
+         public boolean needToCheckPersonalIdentityNumber(){
+                  int birthYear = Integer.parseInt(getprsonalIdentityNumber().substring(0, 2));
+                  int month = Integer.parseInt(getprsonalIdentityNumber().substring(2, 4));
+                  
+                  if (birthYear < 15 || month > 12) {
+                           return true;
+                  }
+                  else {
+                          return false;
+                  }
+         }
+          
+         @Override
+         public String getDateofMembershipExpiration(){
 	return LocalDate.parse(this.getLastMemberShipDate()).plus(12, ChronoUnit.MONTHS).minus(1, ChronoUnit.DAYS).toString();      
           }     
           
-          @Override     
-          public void welcomeCurrentMember(){
-                   JOptionPane.showMessageDialog(null, this.getName() + " är välkommen att träna. "
+         @Override     
+         public void welcomeCurrentMember(){
+                  StringBuilder sb = new StringBuilder( this.getName() + " är välkommen att träna. "
                         + "Nuvarande årsavgift är giltig till och med " + this.getDateofMembershipExpiration());
-          }
+                  
+                  String extramessage = "\nMEN kontrollera ID på kunden för att se personnummer eftersom det i vårt register ser konstigt ut! " +
+                          "\nNotera personnumret så vi kan registrera det riktiga.";
+                  
+                  sb.append(u.extraMessageNeeded(this, extramessage));
+                  JOptionPane.showMessageDialog(null,sb);
+         }
           
-          public void remindCustomerToRenewMemberShip(){
-                   JOptionPane.showMessageDialog(null, "Medlemsskapet för " + this.getName() + " gick ut " 
+         public void remindCustomerToRenewMemberShip(){
+                  StringBuilder sb = new StringBuilder( "Medlemsskapet för " + this.getName() + " gick ut " 
                            + this.getDateofMembershipExpiration() + ". Påminn om att det är dags att förnya för att fortsätta träna.");
-          }
-
-          public Customer isRegisteredCustomer(String nameOrPersonalSecurityNumber, 
-                   List<Customer> gymCustomers) {
-                             Customer temp = null;
-                                     for (Customer c : gymCustomers){
-                                               if(c.getName().equalsIgnoreCase(nameOrPersonalSecurityNumber) || 
-                                                  c.getprsonalIdentityNumber().matches(nameOrPersonalSecurityNumber)){
-                                                                   return temp =c;
-                                               }
-                                     }
-                   return temp;                  
-         } // end isRegisteredCustomer
-        
-          //@Override
-          public boolean checkIfCurrentMember(){
-                   if (LocalDate.now().minus(12, ChronoUnit.MONTHS)
-                             .isBefore(LocalDate.parse(this.getLastMemberShipDate()))) {
-                             return true;
-                   }
-                   else {
-                            return false;
-                   }  
-          } // end isCurrentlyMember            
-} // end class      
+                  
+                  String extramessage = "\nMEN kontrollera ID på kunden om hen förnyar för att se personnummer eftersom det i vårt register inte är korrekt! ";
+                  
+                  sb.append(u.extraMessageNeeded(this, extramessage));
+                  JOptionPane.showMessageDialog(null,sb);          
+         }                 
+}      

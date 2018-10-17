@@ -5,35 +5,31 @@ import java.util.*;
 import javax.swing.JOptionPane;
 public class Gymmet {
 
-         public static void main(String[] args) {
-               
-                 String filePathToRead = "src\\inlamningsuppgift2\\customers.txt";
-                 String filePathToWrite = "src\\inlamningsuppgift2\\gymVisits.txt";
-                 List<Customer>  gymCustomers = IOMethods.readFromFile(filePathToRead);
-               
-                  Customer temp = new Customer();
+           public static void main(String[] args) {
+                    
+                     UtilMethods u = new UtilMethods();
+                     IOMethods io = new IOMethods();
+                     
+                     String filePathToRead = "src\\inlamningsuppgift2\\customers.txt";
+                     String filePathToWrite = "src\\inlamningsuppgift2\\gymVisits.txt";
+                     List<Customer>  gymCustomers = io.readFromFile(filePathToRead);
 
-                  boolean loop = true;
-                  boolean isCurrrentMember = false;
-                  while (loop){
-                             
-                          temp = temp.isRegisteredCustomer(IOMethods.readCustomeInput(), gymCustomers);
-                          
-                          if (temp != null){
-                                   isCurrrentMember = temp.checkIfCurrentMember();
-                                   if (isCurrrentMember == true){
-                                           IOMethods.recordGymVisit(filePathToWrite, temp);
-                                           temp.welcomeCurrentMember();
-                                   }
-                                   else temp.remindCustomerToRenewMemberShip();
-                                       
-                          }
-                          else {
-                                  JOptionPane.showMessageDialog(null,  "Det namn eller personnummer som har angetts matchar ingen tidigare registrerad kund."
-                                           + "\nFörsök igen och kontrollera att du skrev in rätt eller testa ange personnummer eller namn istället.");
-                          }              
-                 }
-               
-    }
-    
+                     Customer temp;
+
+                     while (true){
+                               temp = u.isRegisteredCustomer(io.readCustomeInput(), gymCustomers);
+
+                               if (temp != null){
+
+                                          if (u.checkIfCurrentMember(temp)){
+                                                    temp.welcomeCurrentMember();
+                                                    io.recordGymVisit(filePathToWrite, temp);
+                                          }
+                                          else temp.remindCustomerToRenewMemberShip();
+                                }
+                                else {
+                                          u.printMessageForNonMember();
+                               }              
+                     }
+          }
 }
