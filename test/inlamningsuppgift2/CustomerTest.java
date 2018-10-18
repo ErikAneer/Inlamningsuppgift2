@@ -4,23 +4,35 @@ package inlamningsuppgift2;
 //import java.nio.file.Path;
 //import java.nio.file.Paths;
 //import java.util.List;
+import java.text.ParseException;
 import org.junit.Test;
 import junit.framework.TestCase;
 
 public class CustomerTest {
     
-    Customer c = new Customer("Test Testsson", "8008080165", "2018-01-15");
-//    Customer c2 = new Customer("Bear Belle", "8104021234", "2017-12-02");
-//    String filePath = "src\\inlamningsuppgift2\\customers.txt";
-//    String filePathToWrite = "src\\inlamningsuppgift2\\gymVisits.txt";
-//    List<Customer>  gymCustomers = IOMethods.readFromFile(filePath);
-    
+          Customer c = new Customer("Test Testsson", "801020", "2018-01-15");
+          Customer c2 = new Customer("Testarn Felnummer", "1115111234", "2017-12-02");
+          Customer c3 = new Customer("Testarn Felnummer", "1115351234", "2017-12-02");
+          Customer c4 = new Customer("Testarn Felnummer", "1115351234", "2017-12-02");
+
+          @Test
+          public final void whenExpiresCurrentMembershipTest() { 
+                    TestCase.assertTrue(c.getDateofMembershipExpiration().matches("2019-01-14"));
+                    TestCase.assertFalse(c.getDateofMembershipExpiration().matches("2018-03-20"));
+          }
          
-         @Test
-         public final void whenExpiresCurrentMembershipTest(){ 
-                    TestCase.assertTrue(c.getDateofMembershipExpiration().matches("2019-01-14") == true);
-                    TestCase.assertFalse(c.getDateofMembershipExpiration().matches("2018-03-20") == true);
-         }
-         
-         // Gör test for kolla personnummer.
+          @Test
+          public final void needToCheckPersonalIdentityNumberTest()  {
+                    TestCase.assertTrue(c2.needToCheckPersonalIdentityNumber());
+                    TestCase.assertFalse(c.needToCheckPersonalIdentityNumber());
+                    TestCase.assertTrue(c3.needToCheckPersonalIdentityNumber());
+                    TestCase.assertTrue(c4.needToCheckPersonalIdentityNumber());
+          }    
+          
+          @Test
+          public final void welcomeCurrentMemberTest() {
+                    TestCase.assertTrue(c.welcomeCurrentMember().matches(c.getName() + " är välkommen att träna. "
+                              + "Nuvarande årsavgift är giltig till och med " + c.getDateofMembershipExpiration()));
+                    TestCase.assertFalse(c.welcomeCurrentMember().matches("This will not make green!"));
+          }
 }

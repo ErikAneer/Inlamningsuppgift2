@@ -5,5 +5,5 @@ public interface ICustomerInterface {
     
          public String getDateofMembershipExpiration();
      
-         public void welcomeCurrentMember();  
+         public String welcomeCurrentMember();  
 }

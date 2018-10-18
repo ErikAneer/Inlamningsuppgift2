@@ -56,7 +56,7 @@ public class IOMethods {
          
          public String readCustomeInput(){
                   String input = JOptionPane.showInputDialog( 
-                          "Mata in gymbesökarens för och efternamn med blanksteg emellan eller personnummer (10siffror): ");
+                          "Mata in gymbesökarens för och efternamn (med blanksteg emellan)\neller personnummer (10siffror enligt modellen ÅÅMMDDXXXX): ");
              
                   if (input == null || input.equals(""))
                           System.exit(0);
@@ -67,7 +67,7 @@ public class IOMethods {
          
          public String recordGymVisit(String fileToWrite, Customer c){  
                   Path pathFileToWrite = Paths.get(fileToWrite); 
-                  String returnStringOnlyForTest ="";
+                  String returnStringOnlyForTest =""; 
 
                   try (BufferedWriter out = Files.newBufferedWriter(pathFileToWrite,StandardCharsets.UTF_8,
                                                             StandardOpenOption.APPEND)){ 
@@ -76,7 +76,7 @@ public class IOMethods {
                           returnStringOnlyForTest = c.getName() + " " + c.getprsonalIdentityNumber() + " "+ LocalDate.now() + "\n";
                   }
                   catch (FileNotFoundException e){
-                          JOptionPane.showMessageDialog(null, "Filen kunde inte hittas");
+                          JOptionPane.showMessageDialog(null, "Filen att skriva gymbesöket kunde inte hittas.");
                           e.printStackTrace();
                           System.exit(0);
                   }
@@ -86,7 +86,7 @@ public class IOMethods {
                           System.exit(0);
                   } 
                   catch (Exception e){
-                          JOptionPane.showMessageDialog(null, "Något gick fel");
+                          JOptionPane.showMessageDialog(null, "Något gick fe vid försök att registrera gymbesöket.");
                           e.printStackTrace();
                           System.exit(0);
                   }

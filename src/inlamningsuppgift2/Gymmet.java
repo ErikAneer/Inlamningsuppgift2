@@ -5,31 +5,31 @@ import java.util.*;
 import javax.swing.JOptionPane;
 public class Gymmet {
 
-           public static void main(String[] args) {
+          public static void main(String[] args) {
                     
-                     UtilMethods u = new UtilMethods();
-                     IOMethods io = new IOMethods();
+                    UtilMethods u = new UtilMethods();
+                    IOMethods io = new IOMethods();
                      
-                     String filePathToRead = "src\\inlamningsuppgift2\\customers.txt";
-                     String filePathToWrite = "src\\inlamningsuppgift2\\gymVisits.txt";
-                     List<Customer>  gymCustomers = io.readFromFile(filePathToRead);
+                    String filePathToRead = "src\\inlamningsuppgift2\\customers.txt";
+                    String filePathToWrite = "src\\inlamningsuppgift2\\gymVisits.txt";
+                    List<Customer>  gymCustomers = io.readFromFile(filePathToRead);
 
-                     Customer temp;
+                    Customer temp;
 
-                     while (true){
-                               temp = u.isRegisteredCustomer(io.readCustomeInput(), gymCustomers);
+                    while (true){
+                              temp = u.isRegisteredCustomer(io.readCustomeInput(), gymCustomers);
 
-                               if (temp != null){
+                              if (temp != null){
 
-                                          if (u.checkIfCurrentMember(temp)){
+                                        if (u.checkIfCurrentMember(temp)){
                                                     temp.welcomeCurrentMember();
                                                     io.recordGymVisit(filePathToWrite, temp);
-                                          }
-                                          else temp.remindCustomerToRenewMemberShip();
-                                }
-                                else {
+                                        }
+                                        else temp.remindCustomerToRenewMemberShip();
+                              }
+                              else {
                                           u.printMessageForNonMember();
-                               }              
+                              }              
                      }
           }
 }
