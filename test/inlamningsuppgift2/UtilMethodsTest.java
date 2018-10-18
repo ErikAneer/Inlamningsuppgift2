@@ -18,7 +18,7 @@ public class UtilMethodsTest {
            String extraMessage = "testing testing....";
          
           @Test
-          public final void isRegisteredCustomerTest(){
+          public final void isRegisteredCustomerTest() {
                      TestCase.assertTrue(u.isRegisteredCustomer("Bear Belle",gymCustomers).getprsonalIdentityNumber().matches("8104021234"));
                      TestCase.assertFalse(u.isRegisteredCustomer("Bear Belle",gymCustomers).getprsonalIdentityNumber().matches("8008080165"));
                      TestCase.assertTrue(u.isRegisteredCustomer("8104021234",gymCustomers).getName().matches("Bear Belle"));
@@ -26,13 +26,13 @@ public class UtilMethodsTest {
           }
          
            @Test
-           public final void isCurrentMemberTest(){
+           public final void isCurrentMemberTest() {
                     TestCase.assertTrue(u.checkIfCurrentMember(c));
                     TestCase.assertFalse(u.checkIfCurrentMember(c3));
          }
          
           @Test
-           public final void checkIfAdditionalMesseageIsNeededTest(){
+           public final void checkIfAdditionalMesseageIsNeededTest() {
                      TestCase.assertTrue(u.extraMessageNeeded(c3, extraMessage).matches(extraMessage));
                      TestCase.assertFalse(u.extraMessageNeeded(c3, extraMessage).matches("this is not true"));
                      TestCase.assertFalse(u.extraMessageNeeded(c3, extraMessage).matches(""));

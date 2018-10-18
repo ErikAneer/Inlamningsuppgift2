@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 
 public class IOMethods {
     
-         public List<Customer> readFromFile(String fileToRead){
+         public List<Customer> readFromFile(String fileToRead) {
                   
                   String firstRow;
                   String secondRow ="";
@@ -21,7 +21,7 @@ public class IOMethods {
                   List<Customer> gymCustomers = new ArrayList();
                   String [] firstRowPersonalData = new String[2];
                   
-                  try (Scanner fileScan = new Scanner (filePath)){
+                  try (Scanner fileScan = new Scanner (filePath)) {
                             
                           while(fileScan.hasNext()){
                                    firstRow = fileScan.nextLine();
@@ -36,17 +36,17 @@ public class IOMethods {
                           gymCustomers.add(c);
                           } 
                   }
-                  catch (FileNotFoundException e){
+                  catch (FileNotFoundException e) {
                            JOptionPane.showMessageDialog(null, "Målfilen att läsa ifrån kunde inte hittas.Vänligen kontrollera sökvägen");
                            e.printStackTrace();
                            System.exit(0);
                   }
-                  catch (IOException e){
+                  catch (IOException e) {
                            JOptionPane.showMessageDialog(null, "Något gick fel vid inläsningen av filen.");
                            e.printStackTrace();
                            System.exit(0);
                   }
-                  catch (Exception e){
+                  catch (Exception e) {
                            JOptionPane.showMessageDialog(null, "Ett oväntat fel inträffade.");
                            e.printStackTrace();
                            System.exit(0);
@@ -54,7 +54,7 @@ public class IOMethods {
                   return gymCustomers;
          } 
          
-         public String readCustomeInput(){
+         public String readCustomeInput() {
                   String input = JOptionPane.showInputDialog( 
                           "Mata in gymbesökarens för och efternamn (med blanksteg emellan)\neller personnummer (10siffror enligt modellen ÅÅMMDDXXXX): ");
              
@@ -65,17 +65,17 @@ public class IOMethods {
                   return input;      
          }
          
-         public String recordGymVisit(String fileToWrite, Customer c){  
+         public String recordGymVisit(String fileToWrite, Customer c) {  
                   Path pathFileToWrite = Paths.get(fileToWrite); 
                   String returnStringOnlyForTest =""; 
 
                   try (BufferedWriter out = Files.newBufferedWriter(pathFileToWrite,StandardCharsets.UTF_8,
-                                                            StandardOpenOption.APPEND)){ 
+                                                            StandardOpenOption.APPEND)) { 
                           out.write(c.getName() + " " + c.getprsonalIdentityNumber() + " "+ LocalDate.now() + "\n");
                           out.flush();
                           returnStringOnlyForTest = c.getName() + " " + c.getprsonalIdentityNumber() + " "+ LocalDate.now() + "\n";
                   }
-                  catch (FileNotFoundException e){
+                  catch (FileNotFoundException e) {
                           JOptionPane.showMessageDialog(null, "Filen att skriva gymbesöket kunde inte hittas.");
                           e.printStackTrace();
                           System.exit(0);
@@ -85,7 +85,7 @@ public class IOMethods {
                           e.printStackTrace();
                           System.exit(0);
                   } 
-                  catch (Exception e){
+                  catch (Exception e) {
                           JOptionPane.showMessageDialog(null, "Något gick fe vid försök att registrera gymbesöket.");
                           e.printStackTrace();
                           System.exit(0);

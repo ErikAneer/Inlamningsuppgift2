@@ -11,13 +11,13 @@ abstract class Person {
                     this.personalIdentityNumber = personalSecurityNumber;   
           }
           
-          public Person(){} 
+          public Person() {} 
           
-          public String getName(){
+          public String getName() {
                     return name;
           }
           
-          public String getprsonalIdentityNumber(){
+          public String getprsonalIdentityNumber() {
                     return personalIdentityNumber;
           }               
 }

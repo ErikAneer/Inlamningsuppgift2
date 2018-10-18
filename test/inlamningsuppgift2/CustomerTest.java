@@ -18,7 +18,7 @@ public class CustomerTest {
           }
          
           @Test
-          public final void needToCheckPersonalIdentityNumberTest()  {
+          public final void needToCheckPersonalIdentityNumberTest() {
                     TestCase.assertTrue(c2.needToCheckPersonalIdentityNumber());
                     TestCase.assertFalse(c.needToCheckPersonalIdentityNumber());
                     TestCase.assertTrue(c3.needToCheckPersonalIdentityNumber());

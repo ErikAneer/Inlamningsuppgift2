@@ -18,7 +18,7 @@ public class Gymmet {
                     while (true){
                               temp = u.isRegisteredCustomer(io.readCustomeInput(), gymCustomers);
 
-                              if (temp != null){
+                              if (temp != null ) {
 
                                         if (u.checkIfCurrentMember(temp)){
                                                     temp.welcomeCurrentMember();

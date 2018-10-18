@@ -15,7 +15,7 @@ public class IOMethodsTest {
           String writeFilePath = "src\\inlamningsuppgift2\\gymVisits.txt";
          
           @Test
-          public final void recordGymVisitTest(){
+          public final void recordGymVisitTest() {
                      TestCase.assertTrue(io.recordGymVisit(writeFilePath, c).matches(
                              "Test Testsson 8008080165 " + LocalDate.now() + "\n"));
                      TestCase.assertFalse(io.recordGymVisit(writeFilePath, c).matches(

@@ -12,18 +12,18 @@ public class Customer extends Person implements ICustomerInterface {
          
          protected String lastMemberShipDate;
           
-         public Customer(){}
+         public Customer() {}
             
          public Customer(String name, String personalSecurityNumber, String lastMemberShipDate) {
                    super(name, personalSecurityNumber);
                    this.lastMemberShipDate = lastMemberShipDate;
          }
          
-         public String getLastMemberShipDate(){
+         public String getLastMemberShipDate() {
                    return lastMemberShipDate;
-          }
+         }
           
-         public boolean needToCheckPersonalIdentityNumber(){ 
+         public boolean needToCheckPersonalIdentityNumber() { 
                  /*
                  Obs! Denna metod är skapad för att försöka fånga upp de personer som i customer.txt har ett personnummer som inte verkar riktigt och för 
                  att få en chans att korrigera dem kunddatan. Metoden behövs egentligen inte för programmet i uppgiften. 
@@ -50,12 +50,12 @@ public class Customer extends Person implements ICustomerInterface {
          }
           
          @Override
-         public String getDateofMembershipExpiration(){
+         public String getDateofMembershipExpiration() {
 	return LocalDate.parse(this.getLastMemberShipDate()).plus(12, ChronoUnit.MONTHS).minus(1, ChronoUnit.DAYS).toString();      
           }     
           
          @Override     
-         public String welcomeCurrentMember(){
+         public String welcomeCurrentMember() {
                   StringBuilder sb = new StringBuilder( this.getName() + " är välkommen att träna. "
                         + "Nuvarande årsavgift är giltig till och med " + this.getDateofMembershipExpiration());
                   String returnStringForTestOnly = sb.toString();
@@ -64,10 +64,10 @@ public class Customer extends Person implements ICustomerInterface {
                   
                   sb.append(u.extraMessageNeeded(this, extramessage));
                   JOptionPane.showMessageDialog(null,sb);
-                  return returnStringForTestOnly;
+                  return returnStringForTestOnly; 
          }
           
-         public void remindCustomerToRenewMemberShip(){
+         public void remindCustomerToRenewMemberShip() {
                   StringBuilder sb = new StringBuilder( "Medlemsskapet för " + this.getName() + " gick ut " 
                            + this.getDateofMembershipExpiration() + ". Påminn om att det är dags att förnya för att fortsätta träna.");
                   
