@@ -2,7 +2,6 @@
 package inlamningsuppgift2;
 
 import java.util.*;
-import javax.swing.JOptionPane;
 public class Gymmet {
 
           public static void main(String[] args) {

@@ -1,10 +1,6 @@
 
 package inlamningsuppgift2;
 
-//import java.nio.file.Path;
-//import java.nio.file.Paths;
-//import java.util.List;
-import java.text.ParseException;
 import org.junit.Test;
 import junit.framework.TestCase;
 
