@@ -34,14 +34,13 @@ public class Customer extends Person implements ICustomerInterface {
                  Metoden är inte 100% komplett så den fångar inte upp folk som fyller 18 under året och inte heller inte upp att februari, april, juni, 
                  september och november har mindre än 31 dagar och fel i personnummer kan finnas där. Jag har heller inte tagit hänsyn till om någon
                  exempelvis pga skyddad identitet fått ett annrolunda personnummer på gymmet enligt de avikande numren ovan. Såsom metoden är 
-                 skapad ska den fungera fram till 2027. 
+                 skapad ska den fungera fram till och med 2028 om det misstänkta felet ligger på personnumrets första två siffror. För fel på månad och år fort-
+                 sätter metoden att fungera även efter 2028. 
                  */
                  
                  Calendar now = Calendar.getInstance();
                  int year = (now.get(Calendar.YEAR)-1900) - Integer.parseInt(getprsonalIdentityNumber().substring(0, 2));
-                      if (getprsonalIdentityNumber().substring(0, 1).matches("0"))
-                              year = year - 100;
-                      else if (getprsonalIdentityNumber().substring(0, 1).matches("1"))
+                      if (getprsonalIdentityNumber().substring(0, 1).matches("0") || (getprsonalIdentityNumber().substring(0, 1).matches("1")))
                               year = year - 100;
                  int month = Integer.parseInt(getprsonalIdentityNumber().substring(2, 4));
                  int day = Integer.parseInt(getprsonalIdentityNumber().substring(4, 6));
