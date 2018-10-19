@@ -41,6 +41,8 @@ public class Customer extends Person implements ICustomerInterface {
                  int year = (now.get(Calendar.YEAR)-1900) - Integer.parseInt(getprsonalIdentityNumber().substring(0, 2));
                       if (getprsonalIdentityNumber().substring(0, 1).matches("0"))
                               year = year - 100;
+                      else if (getprsonalIdentityNumber().substring(0, 1).matches("1"))
+                              year = year - 100;
                  int month = Integer.parseInt(getprsonalIdentityNumber().substring(2, 4));
                  int day = Integer.parseInt(getprsonalIdentityNumber().substring(4, 6));
                  
